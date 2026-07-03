@@ -1,0 +1,19 @@
+{
+  "name": "contracts",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "compile": "hardhat compile",
+    "test": "hardhat test",
+    "export": "node scripts/export-artifacts.mjs",
+    "deploy:sepolia": "hardhat ignition deploy ignition/modules/Curriculum.ts --network sepolia"
+  },
+  "devDependencies": {
+    "@nomicfoundation/hardhat-toolbox-viem": "^5.0.0",
+    "hardhat": "^3.0.0",
+    "typescript": "~5.8.0",
+    "viem": "^2.30.0",
+    "@types/node": "^22.0.0"
+  }
+}

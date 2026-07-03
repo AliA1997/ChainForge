@@ -1,0 +1,12 @@
+node_modules/
+.env
+.env.local
+.next/
+out/
+dist/
+coverage/
+artifacts/
+cache/
+ignition/deployments/
+*.tsbuildinfo
+.DS_Store

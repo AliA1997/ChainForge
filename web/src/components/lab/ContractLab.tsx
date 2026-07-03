@@ -1,6 +1,5 @@
 "use client";
 
-import Link from "next/link";
 import { useMemo, useState } from "react";
 import { useAccount } from "wagmi";
 import { isAddress, type AbiFunction, type Address } from "viem";
@@ -62,34 +61,10 @@ export function ContractLab({ slug }: { slug: string }) {
     setAttachInput("");
   }
 
+  // Header (name/tagline/description) is server-rendered by the page —
+  // this component is only the interactive, lazily-loaded half.
   return (
-    <div>
-      <div className="flex flex-wrap items-start justify-between gap-4">
-        <div>
-          <div className="flex items-center gap-3">
-            <h1 className="font-mono text-3xl font-bold text-white">{meta.name}</h1>
-            <span className="badge border-indigo-500/40 text-indigo-300">Lesson {meta.lesson}</span>
-          </div>
-          <p className="mt-1 text-indigo-300/80">{meta.tagline}</p>
-        </div>
-        <Link href={`/learn/${meta.tutorialSlug}`} className="btn-ghost">
-          Read the tutorial →
-        </Link>
-      </div>
-      <p className="mt-3 max-w-3xl text-sm leading-relaxed text-zinc-400">{meta.description}</p>
-
-      {meta.tryFirst && (
-        <div className="mt-4 flex flex-wrap gap-2">
-          {meta.tryFirst.map((suggestion) => (
-            <span key={suggestion} className="badge border-zinc-700 text-zinc-400">
-              try: {suggestion}
-            </span>
-          ))}
-        </div>
-      )}
-
-      <div className="mt-8">
-        <ConnectGate>
+    <ConnectGate>
           <div className="grid gap-6 lg:grid-cols-[minmax(0,340px)_1fr]">
             {/* left rail: deploy + instances */}
             <div className="space-y-4">
@@ -214,8 +189,6 @@ export function ContractLab({ slug }: { slug: string }) {
               )}
             </div>
           </div>
-        </ConnectGate>
-      </div>
-    </div>
+    </ConnectGate>
   );
 }

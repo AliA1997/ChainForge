@@ -1,8 +1,16 @@
 "use client";
 
 import Link from "next/link";
+import dynamic from "next/dynamic";
 import { usePathname } from "next/navigation";
-import { WalletButton } from "./WalletButton";
+import { WalletButtonSkeleton } from "./Skeleton";
+
+// Client-only: wallet state lives in the browser (extension + storage), so
+// skip SSR and show the last-known state while the web3 chunk loads.
+const WalletButton = dynamic(
+  () => import("./WalletButton").then((mod) => ({ default: mod.WalletButton })),
+  { ssr: false, loading: () => <WalletButtonSkeleton /> },
+);
 
 const NAV = [
   { href: "/learn", label: "Learn" },
